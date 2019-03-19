@@ -1,0 +1,9 @@
+package: .
+import:
+- package: github.com/go-redis/redis
+  version: ~6.15.2
+- package: github.com/sirupsen/logrus
+  version: ~1.4.0
+- package: golang.org/x/sys
+  subpackages:
+  - unix

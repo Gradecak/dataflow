@@ -1,0 +1,26 @@
+hash: 014b5f1e67a69864a1813e595900201f1b4d61d9c2556321771f453b82ebf9e6
+updated: 2019-03-19T11:23:33.151803108+01:00
+imports:
+- name: github.com/go-redis/redis
+  version: d22fde8721cc915a55aeb6b00944a76a92bfeb6e
+  subpackages:
+  - internal
+  - internal/consistenthash
+  - internal/hashtag
+  - internal/pool
+  - internal/proto
+  - internal/util
+- name: github.com/konsorten/go-windows-terminal-sequences
+  version: f55edac94c9bbba5d6182a4be46d86a2c9b5b50e
+- name: github.com/sirupsen/logrus
+  version: dae0fa8d5b0c810a8ab733fbd5510c7cae84eca4
+- name: golang.org/x/crypto
+  version: a1f597ede03a7bef967a422b5b3a5bd08805a01e
+  subpackages:
+  - ssh/terminal
+- name: golang.org/x/sys
+  version: 6c81ef8f67ca3f42fc9cd71dfbd5f35b0c4b5771
+  subpackages:
+  - unix
+  - windows
+testImports: []
