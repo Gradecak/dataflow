@@ -1,5 +1,5 @@
-hash: 014b5f1e67a69864a1813e595900201f1b4d61d9c2556321771f453b82ebf9e6
-updated: 2019-03-19T11:23:33.151803108+01:00
+hash: 8153305bc41046787291b3c36b92acaff748dff027e973705ced5c8060a0f8df
+updated: 2019-03-19T14:11:16.235464643+01:00
 imports:
 - name: github.com/go-redis/redis
   version: d22fde8721cc915a55aeb6b00944a76a92bfeb6e
@@ -10,6 +10,10 @@ imports:
   - internal/pool
   - internal/proto
   - internal/util
+- name: github.com/gradecak/dataflow
+  version: 56dc44ed706fdc827c6db09655e42b20f7d5ab07
+  subpackages:
+  - pkg/consent
 - name: github.com/konsorten/go-windows-terminal-sequences
   version: f55edac94c9bbba5d6182a4be46d86a2c9b5b50e
 - name: github.com/sirupsen/logrus

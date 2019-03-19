@@ -29,9 +29,9 @@ func Init(conf ConsentStoreConfig) Store {
 }
 
 func (store Store) SetConsent(msg ConsentMessage) {
-	log.WithFields(log.Fields{"id": msg.id, "status": msg.status}).Debug()
+	log.WithFields(log.Fields{"id": msg.Id, "status": msg.Status}).Debug()
 
-	err := store.client.Set(msg.id, msg.status, 0).Err()
+	err := store.client.Set(msg.Id, msg.Status, 0).Err()
 	if err != nil {
 		log.Fatal(err.Error())
 	}

@@ -21,6 +21,6 @@ func (status ConsentStatus) String() string {
 }
 
 type ConsentMessage struct {
-	id     string
-	status ConsentStatus
+	Id     string
+	Status ConsentStatus
 }
