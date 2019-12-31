@@ -1,4 +1,4 @@
-package: github.com/Gradecak/dataflow
+package: github.com/gradecak/dataflow
 import:
 - package: github.com/go-redis/redis
   version: ~6.15.2
@@ -7,3 +7,14 @@ import:
 - package: golang.org/x/sys
   subpackages:
   - unix
+- package: github.com/nats-io/go-nats-streaming
+  version: ~0.4.2
+- package: github.com/gogo/protobuf
+  version: ~1.2.1
+  subpackages:
+  - gogoproto
+- package: gopkg.in/yaml.v2
+  version: ~2.2.2
+- package: github.com/wallix/triplestore
+- package: github.com/patrickmn/go-cache
+  version: ~2.1.0

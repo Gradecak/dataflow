@@ -1,6 +1,7 @@
 package consent
 
 import (
+	"errors"
 	"github.com/go-redis/redis"
 	log "github.com/sirupsen/logrus"
 )
@@ -15,7 +16,7 @@ type Store struct {
 	client *redis.Client
 }
 
-func Init(conf ConsentStoreConfig) Store {
+func StoreInit(conf ConsentStoreConfig) Store {
 	client := redis.NewClient(&redis.Options{
 		Addr:     conf.Addr,
 		Password: conf.Password,
@@ -23,31 +24,44 @@ func Init(conf ConsentStoreConfig) Store {
 	})
 	_, err := client.Ping().Result()
 	if err != nil {
-		log.Error(err.Error())
+		log.Error("Error Connecting to Redis instance: ", err.Error())
 	}
 	return Store{client: client}
 }
 
-func (store Store) SetConsent(msg ConsentMessage) {
-	log.WithFields(log.Fields{"id": msg.Id, "status": msg.Status}).Debug()
+func (store Store) setConsent(msg ConsentMessage) {
+	valid := msg.isValid()
+	if valid {
+		log.WithFields(log.Fields{"id": msg.Id, "status": msg.Status}).Debug()
 
-	err := store.client.Set(msg.Id, msg.Status, 0).Err()
-	if err != nil {
-		log.Fatal(err.Error())
+		err := store.client.Set(msg.Id, msg.Status, 0).Err()
+		if err != nil {
+			log.Fatal(err.Error())
+		}
 	}
 }
 
-func (store Store) GetConsent(id string) ConsentStatus {
-	log.WithFields(log.Fields{"id": id}).Debug()
+func (store Store) getConsent(id string) (ConsentStatus, error) {
+	log.WithFields(log.Fields{"id": id}).Debug("Fetching From Store..")
 	val, err := store.client.Get(id).Result()
 
+	//if the value is not in redis store
 	if err == redis.Nil {
-		log.WithFields(log.Fields{"id": id}).Fatal("key does not exist")
+		log.WithFields(log.Fields{"id": id}).Info("key does not exist")
+		return GRANTED, nil
 	}
 	if err != nil {
-		log.WithFields(log.Fields{"id": id}).Fatal(err.Error())
+		log.WithFields(log.Fields{"id": id}).Error(err.Error())
+		return UNDEFINED, err
 	}
 
-	log.WithFields(log.Fields{"val": val}).Debug()
-	return ConsentStatus(0)
+	status := UNDEFINED
+	err = status.UnmarshalBinary([]byte(val))
+	// status, err := strconv.Atoi(val)
+	if err != nil {
+		log.WithFields(log.Fields{"status": val}).Error("Fetched status not in valid ConsentStatus range")
+		return UNDEFINED, errors.New("Cannot unmarshal Stored Value")
+	}
+	log.WithFields(log.Fields{"status": status}).Debug("Fetched Status:")
+	return ConsentStatus(status), nil
 }

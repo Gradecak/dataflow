@@ -1,5 +1,5 @@
-hash: 8153305bc41046787291b3c36b92acaff748dff027e973705ced5c8060a0f8df
-updated: 2019-03-19T14:11:16.235464643+01:00
+hash: 1e840a5e756f722e337d233760d7fdc19d3f4e44f422fb5feb804e74cc66e826
+updated: 2019-03-26T12:04:26.297068226+01:00
 imports:
 - name: github.com/go-redis/redis
   version: d22fde8721cc915a55aeb6b00944a76a92bfeb6e
@@ -10,21 +10,44 @@ imports:
   - internal/pool
   - internal/proto
   - internal/util
-- name: github.com/gradecak/dataflow
-  version: 56dc44ed706fdc827c6db09655e42b20f7d5ab07
+- name: github.com/gogo/protobuf
+  version: ba06b47c162d49f2af050fb4c75bcbc86a159d5c
   subpackages:
-  - pkg/consent
+  - gogoproto
+  - proto
+  - protoc-gen-gogo/descriptor
 - name: github.com/konsorten/go-windows-terminal-sequences
   version: f55edac94c9bbba5d6182a4be46d86a2c9b5b50e
+- name: github.com/nats-io/go-nats
+  version: c528ff487513eec69347b5598eb35d91f0a63820
+  subpackages:
+  - encoders/builtin
+  - util
+- name: github.com/nats-io/go-nats-streaming
+  version: 4366d43a0648b4997ed32080f937e8702ab86c48
+  subpackages:
+  - pb
+- name: github.com/nats-io/nkeys
+  version: 1546a3320a8f195a5b5c84aef8309377c2e411d5
+- name: github.com/nats-io/nuid
+  version: 3024a71c3cbe30667286099921591e6fcc328230
+- name: github.com/patrickmn/go-cache
+  version: a3647f8e31d79543b2d0f0ae2fe5c379d72cedc0
 - name: github.com/sirupsen/logrus
   version: dae0fa8d5b0c810a8ab733fbd5510c7cae84eca4
+- name: github.com/wallix/triplestore
+  version: 4099dd913851642f2c0b71f9c1a0c6887748849c
 - name: golang.org/x/crypto
-  version: a1f597ede03a7bef967a422b5b3a5bd08805a01e
+  version: a5d413f7728c81fb97d96a2b722368945f651e78
   subpackages:
+  - ed25519
+  - ed25519/internal/edwards25519
   - ssh/terminal
 - name: golang.org/x/sys
-  version: 6c81ef8f67ca3f42fc9cd71dfbd5f35b0c4b5771
+  version: f49334f85ddcf0f08d7fb6dd7363e9e6d6b777eb
   subpackages:
   - unix
   - windows
+- name: gopkg.in/yaml.v2
+  version: 51d6538a90f86fe93ac480b35f37b2be17fef232
 testImports: []
